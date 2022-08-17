@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Good Coffee Shop</title>
+
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">Good Coffee</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/knowCoffee}">Know your coffee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/coffeeProducts}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/basket}">Basket</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/customerForm}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/account}">Account</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br><br>
+<br><br>
+
+<div class="container text-center">
+    <div class="row justify-content-md-center">
+        <div class="card text-bg-dark mb-3">
+            <br>
+            <h1>Pick your coffee</h1>
+            <br>
+            <form method="POST" th:object="${coffeeProducts}">
+                <div class="row">
+
+                    <div class="col col-sm">
+                        <div class="card-body">
+                            <h3>South America</h3>
+                            <ul class="list-group" th:each="coffee : ${south_america}">
+                                <li class="list-group-item text-bg-dark bg-transparent border-warning">
+                                    <input class="form-check-input me-1" type="checkbox" th:value="${coffee.id}"
+                                           id="south-america">
+                                    <span th:text="${coffee.name}">Country</span>
+                                </li>
+                                <br>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col col-sm">
+                        <div class="card-body">
+                            <h3>Africa</h3>
+                            <ul class="list-group" th:each="coffee : ${africa}">
+                                <li class="list-group-item text-bg-dark bg-transparent border-warning">
+                                    <input class="form-check-input me-1" type="checkbox" th:value="${coffee.id}"
+                                           id="africa">
+                                    <span th:text="${coffee.name}">Country</span>
+                                </li>
+                                <br>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col col-sm">
+                        <div class="card-body">
+                            <h3>Asia</h3>
+                            <ul class="list-group" th:each="coffee : ${asia}">
+                                <li class="list-group-item text-bg-dark bg-transparent border-warning">
+                                    <input class="form-check-input me-1" type="checkbox" th:value="${coffee.id}"
+                                           id="asia">
+                                    <span th:text="${coffee.name}">Country</span>
+                                </li>
+                                <br>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <a th:href="@{/customerBasket}" class="btn btn-warning">Add to basket</a>
+                <br><br>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
