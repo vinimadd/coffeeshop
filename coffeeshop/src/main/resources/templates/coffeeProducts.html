@@ -6,6 +6,7 @@
 
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css}" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
 
@@ -50,15 +51,17 @@
             <br>
             <h1>Pick your coffee</h1>
             <br>
-            <form method="POST" th:object="${coffeeProducts}">
+            <form action="#" th:action="@{/coffeeProducts/processForm}" th:object="${coffeeProducts}" method="post">
+                <span class="validationError" th:if="${#fields.hasErrors()}"
+                      th:errors="*{itemsInBasket}">There is no coffee picked</span>
                 <div class="row">
-
                     <div class="col col-sm">
                         <div class="card-body">
                             <h3>South America</h3>
                             <ul class="list-group" th:each="coffee : ${south_america}">
                                 <li class="list-group-item text-bg-dark bg-transparent border-warning">
-                                    <input class="form-check-input me-1" type="checkbox" th:value="${coffee.id}"
+                                    <input class="form-check-input me-1" name="itemsInBasket" type="checkbox"
+                                           th:value="${coffee.id}"
                                            id="south-america">
                                     <span th:text="${coffee.name}">Country</span>
                                 </li>
@@ -72,7 +75,8 @@
                             <h3>Africa</h3>
                             <ul class="list-group" th:each="coffee : ${africa}">
                                 <li class="list-group-item text-bg-dark bg-transparent border-warning">
-                                    <input class="form-check-input me-1" type="checkbox" th:value="${coffee.id}"
+                                    <input class="form-check-input me-1" name="itemsInBasket" type="checkbox"
+                                           th:value="${coffee.id}"
                                            id="africa">
                                     <span th:text="${coffee.name}">Country</span>
                                 </li>
@@ -86,7 +90,8 @@
                             <h3>Asia</h3>
                             <ul class="list-group" th:each="coffee : ${asia}">
                                 <li class="list-group-item text-bg-dark bg-transparent border-warning">
-                                    <input class="form-check-input me-1" type="checkbox" th:value="${coffee.id}"
+                                    <input class="form-check-input me-1" name="itemsInBasket" type="checkbox"
+                                           th:value="${coffee.id}"
                                            id="asia">
                                     <span th:text="${coffee.name}">Country</span>
                                 </li>
@@ -97,7 +102,7 @@
                 </div>
 
                 <br>
-                <a th:href="@{/customerBasket}" class="btn btn-warning">Add to basket</a>
+                <button class="btn btn-warning" type="submit">Add to basket</button>
                 <br><br>
             </form>
         </div>

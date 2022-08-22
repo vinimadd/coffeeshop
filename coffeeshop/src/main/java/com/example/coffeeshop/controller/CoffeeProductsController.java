@@ -1,15 +1,17 @@
 package com.example.coffeeshop.controller;
 
 import com.example.coffeeshop.repository.CoffeeProducts;
-import com.example.coffeeshop.repository.Order;
+import com.example.coffeeshop.repository.Basket;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,9 +54,20 @@ public class CoffeeProductsController {
 
     @GetMapping
     public String showCoffeeForm(Model model) {
-        model.addAttribute("coffeeProducts", new Order());
+        model.addAttribute("coffeeProducts", new Basket());
         return "coffeeProducts";
 
+    }
+
+    @PostMapping("/processForm")
+    public String processCoffeeForm(@Valid @ModelAttribute("coffeeProducts") Basket basket,
+                                    BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "coffeeProducts";
+        } else {
+            log.info("Picked items: " + basket);
+            return "redirect:/orders/current";
+        }
     }
 
     private List<CoffeeProducts> filterByType(List<CoffeeProducts> coffees, CoffeeProducts.Type type) {
@@ -63,5 +76,4 @@ public class CoffeeProductsController {
                 .filter(c -> c.getType().equals(type))
                 .collect(Collectors.toList());
     }
-
 }
