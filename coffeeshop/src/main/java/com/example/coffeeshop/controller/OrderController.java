@@ -1,30 +1,29 @@
 package com.example.coffeeshop.controller;
 
-import com.example.coffeeshop.repository.Basket;
-import com.example.coffeeshop.repository.Order;
+import com.example.coffeeshop.entity.Basket;
+import com.example.coffeeshop.entity.Order;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Slf4j
-@Controller
-@RequestMapping("/orders")
+@RestController
 public class OrderController {
 
-    @GetMapping("/current")
+    // show current order
+    // process current order
+    // show current order confirmation, redirect
+
+    @GetMapping("/orders/current")
     public String showOrderForm(Model model) {
         model.addAttribute("order", new Order());
         return "customerForm";
     }
 
-    @PostMapping("/processForm")
+    @PostMapping("/orders/processForm")
     public String processOrderForm(@Valid @ModelAttribute("order") Order orderData,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -33,6 +32,14 @@ public class OrderController {
             log.info("order " + orderData);
             return "customerConfirmation";
         }
+    }
+
+    @GetMapping("/orders/confirmation")
+    public String showCustomerConfirmation(@ModelAttribute("basketItems") Basket basket,
+                                           @ModelAttribute("order") Order order) {
+
+        log.info("basket " + basket + "order " + order);
+        return "redirect:/";
     }
 
 }

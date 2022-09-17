@@ -45,24 +45,33 @@
 <br><br>
 <div class="container text-center">
     <div class="row justify-content-md-center">
+        <form action="GET" th:object="${confirmation}">
         <div class="card text-bg-dark mb-3">
             <div class="card-header">
-                <h1 class="card-title">Welcome to our coffee store!</h1>
+                <h2>Order confirmation: </h2>
             </div>
             <div class="card-body">
-                <img th:src="@{http://www.bigc.co.th/blog/wp-content/uploads/2021/02/coffee-cup-coffee-beans-JDGKZJ2.jpg}"
-                     class="img-fluid rounded-start" alt="homepage-img">
+                <p>Your order contains: </p>
+<!--                <div th:object="${basketItems}">-->
+<!--                    <p th:each="item : ${basketItems}"></p>-->
+<!--                    <p th:text="*{item.name}">item</p>-->
+<!--                </div>-->
+                <p>and will be shipped to: </p>
+<!--                <div th:object="${orderForm}">-->
+<!--                    <p th:text="*{firstName}">item</p>-->
+<!--                    <p th:text="*{lastName}">item</p>-->
+<!--                    <p th:text="*{emailAddress}">item</p>-->
+<!--                    <p th:text="*{phoneNumber}">item</p>-->
+<!--                    <p th:text="*{street}">item</p>-->
+<!--                    <p th:text="*{city}">item</p>-->
+<!--                    <p th:text="*{postalCode}">item</p>-->
+<!--                </div>-->
             </div>
             <div class="card-footer">
-                <p class="card-text">In our online shop you will explore coffee from a famous coffee belt.</p>
-                <p class="card-text">If this is your first time shopping for coffee or if you look for something
-                    as a gift,
-                    <br>
-                    we encourage you to take a look <a th:href="@{/knowCoffee}" class="link-warning">here</a>.
-                </p>
-                <p class="card-text">We hope that you will be satisfied with our products!</p>
+                <a th:href="@{/}" class="btn btn-warning">Done!</a>
             </div>
         </div>
+        </form>
     </div>
 </div>
 
