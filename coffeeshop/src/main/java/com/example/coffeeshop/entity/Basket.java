@@ -1,4 +1,4 @@
-package com.example.coffeeshop.repository;
+package com.example.coffeeshop.entity;
 
 import lombok.Data;
 

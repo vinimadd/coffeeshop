@@ -1,10 +1,7 @@
-package com.example.coffeeshop.repository;
+package com.example.coffeeshop.entity;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Data
 @RequiredArgsConstructor

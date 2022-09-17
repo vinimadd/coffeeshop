@@ -1,15 +1,11 @@
 package com.example.coffeeshop.controller;
 
-import com.example.coffeeshop.repository.CoffeeProducts;
-import com.example.coffeeshop.repository.Basket;
+import com.example.coffeeshop.entity.CoffeeProducts;
+import com.example.coffeeshop.entity.Basket;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -17,9 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Controller
-@RequestMapping("/coffeeProducts")
-public class CoffeeProductsController {
+@RestController
+public class ProductsController {
+
+    // show available coffee products
+    // pick coffee products, redirect to current order
 
     @ModelAttribute
     public void addCoffeeToModel(Model model) {
@@ -52,7 +50,7 @@ public class CoffeeProductsController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/coffeeProducts")
     public String showCoffeeForm(Model model) {
         model.addAttribute("coffeeProducts", new Basket());
         return "coffeeProducts";
