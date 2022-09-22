@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Good Coffee Shop</title>
@@ -19,13 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/api/home}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/knowCoffee}">Know your coffee</a>
+                    <a class="nav-link" th:href="@{/api/knowCoffee}">Know your coffee</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/coffeeProducts}">Products</a>
+                    <a class="nav-link" th:href="@{/api/coffeeProducts}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/basket}">Basket</a>
@@ -58,7 +58,7 @@
                 <p class="card-text">If this is your first time shopping for coffee or if you look for something
                     as a gift,
                     <br>
-                    we encourage you to take a look <a th:href="@{/knowCoffee}" class="link-warning">here</a>.
+                    we encourage you to take a look <a th:href="@{/api/knowCoffee}" class="link-warning">here</a>.
                 </p>
                 <p class="card-text">We hope that you will be satisfied with our products!</p>
             </div>
