@@ -4,13 +4,15 @@ import com.example.coffeeshop.entity.Product;
 import com.example.coffeeshop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/api")
 public class ProductController {
 
@@ -23,9 +25,13 @@ public class ProductController {
 
     // show available coffee products
     @GetMapping("/products")
-    public List<Product> findAll() {
+    public String showProducts(Model model) {
 
-        return productService.findAll();
+        List<Product> products = productService.findAll();
+
+        model.addAttribute("products", products);
+
+        return "products";
 
     }
 

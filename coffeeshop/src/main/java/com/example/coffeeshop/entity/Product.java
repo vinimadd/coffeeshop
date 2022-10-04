@@ -28,25 +28,4 @@ public class Product {
 //    @Column(name="inStock")
 //    private boolean inStock;
 
-    public Product () {}
-
-    public Product(int id, String productName, String productRegion, int amount, double price) {
-        this.id = id;
-        this.productName = productName;
-        this.productRegion = productRegion;
-        this.amount = amount;
-        this.price = price;
-//        this.inStock = inStock;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", productRegion='" + productRegion + '\'' +
-                ", amount=" + amount +
-                ", price=" + price +
-                '}';
-    }
 }

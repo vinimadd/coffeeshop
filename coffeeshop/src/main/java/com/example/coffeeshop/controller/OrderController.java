@@ -1,6 +1,6 @@
 package com.example.coffeeshop.controller;
 
-import com.example.coffeeshop.entity.Order;
+import com.example.coffeeshop.entity.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class OrderController {
 
     @GetMapping("/orders/current")
     public String showOrderForm(Model model) {
-        model.addAttribute("order", new Order());
+        model.addAttribute("order", new Customer());
         return "customerForm";
     }
 

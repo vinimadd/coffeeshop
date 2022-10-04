@@ -26,10 +26,10 @@
                     <a class="nav-link" th:href="@{/api/knowCoffee}">Know your coffee</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/coffeeProducts}">Products</a>
+                    <a class="nav-link" th:href="@{/api/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/basket}">Basket</a>
+                    <a class="nav-link" th:href="@{/api/orders}">Basket</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/customerForm}">Register</a>
@@ -51,52 +51,21 @@
             <br>
             <h1>Pick your coffee</h1>
             <br>
-            <form th:action="@{/coffeeProducts/processForm}" th:object="${coffeeProducts}" method="post">
+            <form th:action="@{/products/form}" th:object="${products}" method="post">
                 <span class="validationError" th:if="${#fields.hasErrors()}"
                       th:errors="*{itemsInBasket}">There is no coffee picked</span>
                 <div class="row">
-                    <div class="col col-sm">
-                        <div class="card-body">
-                            <h3>South America</h3>
-                            <ul class="list-group" th:each="coffee : ${south_america}">
-                                <li class="list-group-item text-bg-dark bg-transparent border-warning">
-                                    <input class="form-check-input me-1" name="itemsInBasket" type="checkbox"
-                                           th:value="${coffee.id}"
-                                           id="south-america">
-                                    <span th:text="${coffee.name}">Country</span>
-                                </li>
-                                <br>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col col-sm">
-                        <div class="card-body">
-                            <h3>Africa</h3>
-                            <ul class="list-group" th:each="coffee : ${africa}">
-                                <li class="list-group-item text-bg-dark bg-transparent border-warning">
-                                    <input class="form-check-input me-1" name="itemsInBasket" type="checkbox"
-                                           th:value="${coffee.id}"
-                                           id="africa">
-                                    <span th:text="${coffee.name}">Country</span>
-                                </li>
-                                <br>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col col-sm">
-                        <div class="card-body">
-                            <h3>Asia</h3>
-                            <ul class="list-group" th:each="coffee : ${asia}">
-                                <li class="list-group-item text-bg-dark bg-transparent border-warning">
-                                    <input class="form-check-input me-1" name="itemsInBasket" type="checkbox"
-                                           th:value="${coffee.id}"
-                                           id="asia">
-                                    <span th:text="${coffee.name}">Country</span>
-                                </li>
-                                <br>
-                            </ul>
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3 border-warning" style="width: 18rem;" th:each="coffee : ${products}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${coffee.productName}">product name</h5>
+                                <p class="card-text" th:text="'region: ' + ${coffee.productRegion}">product region</p>
+                                <div class="form-check form-check-inline form-check-reverse">
+                                    <input class="form-check-input" name="itemsInBasket" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault" th:text="'$' + ${coffee.price}">product price</label>
+                                </div>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
