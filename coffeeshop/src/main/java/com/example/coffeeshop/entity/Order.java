@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@Table(name = "customer_order")
 public class Order {
 
     @Id
@@ -14,7 +15,20 @@ public class Order {
     @Column(name="id")
     private int id;
 
-    @Column(name="order_date")
-    private Date date;
+   @Column(name = "customer_id")
+    private int customerId;
+
+   @Column(name = "product_id")
+    private int productId;
+
+   @Column(name = "quantity")
+    private int quantity;
+
+   @Column(name = "create_date")
+    private Date createDate;
+
+   @ManyToOne
+   @JoinColumn(name = "product_id", insertable = false, updatable = false)
+   private Product product;
 
 }

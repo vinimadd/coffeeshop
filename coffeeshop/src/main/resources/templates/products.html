@@ -51,9 +51,7 @@
             <br>
             <h1>Pick your coffee</h1>
             <br>
-            <form th:action="@{/products/form}" th:object="${products}" method="post">
-                <span class="validationError" th:if="${#fields.hasErrors()}"
-                      th:errors="*{itemsInBasket}">There is no coffee picked</span>
+            <form th:action="@{/api/products}" th:object="${addedProducts}" method="post">
                 <div class="row">
                     <div class="col">
                         <div class="card text-bg-dark mb-3 border-warning" style="width: 18rem;" th:each="coffee : ${products}">

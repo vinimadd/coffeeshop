@@ -1,13 +1,18 @@
 package com.example.coffeeshop.service;
 
 import com.example.coffeeshop.entity.Order;
-import com.example.coffeeshop.entity.OrderDetails;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface OrderService {
 
-    public List<Order> findAll();
+    Order saveOrder(Order order);
+
+    Optional<Order> getOrder(int orderId);
+
+    List<Order> getAllOrdersByCustomerId(int customerId);
+
 
 }
