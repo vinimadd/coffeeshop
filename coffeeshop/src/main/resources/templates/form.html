@@ -27,10 +27,10 @@
                     <a class="nav-link" th:href="@{/api/knowCoffee}">Know your coffee</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/coffeeProducts}">Products</a>
+                    <a class="nav-link" th:href="@{/api/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/basket}">Basket</a>
+                    <a class="nav-link" th:href="@{/api/orders}">Basket</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/customerForm}">Register</a>
@@ -56,37 +56,26 @@
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First name: </label>
                         <input type="text" class="form-control" th:field="*{firstName}" id="firstName" placeholder="">
-                        <span class="validationError" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</span>
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last name: </label>
                         <input type="text" class="form-control" th:field="*{lastName}" id="lastName" placeholder="">
-                        <span class="validationError" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>
                     </div>
                     <div class="mb-3">
                         <label for="emailAddress" class="form-label">Email address: </label>
                         <input type="email" class="form-control" th:field="*{emailAddress}" id="emailAddress" placeholder="name@example.com">
-                        <span class="validationError" th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Email address error</span>
                     </div>
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Phone number: </label>
                         <input type="text" class="form-control" th:field="*{phoneNumber}" id="phoneNumber" placeholder="">
-                        <span class="validationError" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone number error</span>
                     </div>
                     <div class="mb-3">
                         <label for="street" class="form-label">Street: </label>
                         <input type="text" class="form-control" th:field="*{street}" id="street" placeholder="">
-                        <span class="validationError" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Street error</span>
                     </div>
                     <div class="mb-3">
                         <label for="city" class="form-label">City: </label>
                         <input type="text" class="form-control" th:field="*{city}" id="city" placeholder="">
-                        <span class="validationError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City error</span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="postalCode" class="form-label">Postal code: </label>
-                        <input type="text" class="form-control" th:field="*{postalCode}" id="postalCode" placeholder="">
-                        <span class="validationError" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}">Postal code error</span>
                     </div>
                 </div>
                 <div class="card-footer text-center">

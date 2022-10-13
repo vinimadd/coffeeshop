@@ -2,22 +2,33 @@ package com.example.coffeeshop.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
+import java.util.Date;
+
 @Data
+@Entity
+@Table(name = "customer_order")
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
 
-    private String firstName;
+   @Column(name = "customer_id")
+    private int customerId;
 
-    private String lastName;
+   @Column(name = "product_id")
+    private int productId;
 
-    private String emailAddress;
+   @Column(name = "quantity")
+    private int quantity;
 
-    private String phoneNumber;
+   @Column(name = "create_date")
+    private Date createDate;
 
-    private String street;
-
-    private String city;
-
-    private String postalCode;
+   @ManyToOne
+   @JoinColumn(name = "product_id", insertable = false, updatable = false)
+   private Product product;
 
 }

@@ -1,22 +1,33 @@
 package com.example.coffeeshop.controller;
 
-import com.example.coffeeshop.entity.Order;
+import com.example.coffeeshop.entity.Customer;
+import com.example.coffeeshop.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@RestController
+@Controller
+@RequestMapping("/api")
 public class OrderController {
 
     // show current order
     // process current order
     // show current order confirmation, redirect
 
+    OrderService orderService;
+
+    @Autowired
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
     @GetMapping("/orders/current")
     public String showOrderForm(Model model) {
-        model.addAttribute("order", new Order());
-        return "customerForm";
+        model.addAttribute("order", new Customer());
+        return "form";
     }
 
 //    @PostMapping("/orders/processForm")
