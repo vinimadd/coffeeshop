@@ -1,6 +1,7 @@
 package com.example.coffeeshop.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,6 +27,10 @@ public class Order {
 
    @Column(name = "create_date")
     private Date createDate;
+
+//    @CreationTimestamp
+//    @Column(updatable = false)
+//    Timestamp dateCreated;
 
    @ManyToOne
    @JoinColumn(name = "product_id", insertable = false, updatable = false)

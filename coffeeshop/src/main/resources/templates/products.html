@@ -32,7 +32,7 @@
                     <a class="nav-link" th:href="@{/api/orders}">Basket</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/customerForm}">Register</a>
+                    <a class="nav-link" th:href="@{/api/form}">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/account}">Account</a>
@@ -51,7 +51,7 @@
             <br>
             <h1>Pick your coffee</h1>
             <br>
-            <form th:action="@{/api/products}" th:object="${addedProducts}" method="post">
+            <form th:action="@{/api/products}" th:object="${product}" method="post">
                 <div class="row">
                     <div class="col">
                         <div class="card text-bg-dark mb-3 border-warning" style="width: 18rem;" th:each="coffee : ${products}">

@@ -21,7 +21,6 @@ public class ProductController {
     private ProductService productService;
     private OrderService orderService;
 
-    @Autowired
     public ProductController (ProductService theProductService) {
         productService = theProductService;
     }
