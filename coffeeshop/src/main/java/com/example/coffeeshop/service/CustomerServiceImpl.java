@@ -57,4 +57,9 @@ public class CustomerServiceImpl implements CustomerService{
         repository.deleteById(id);
 
     }
+    @Override
+    public Customer findByEmailAddress(String email) {
+        Customer customerWithEmail = repository.findByEmailAddress(email);
+        return customerWithEmail;
+    }
 }

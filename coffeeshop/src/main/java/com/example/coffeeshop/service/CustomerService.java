@@ -16,4 +16,7 @@ public interface CustomerService {
     Customer updateCustomer(Customer customer, int id) throws AccountNotFoundException;
 
     void deleteCustomer(int id) throws AccountNotFoundException;
+
+    Customer findByEmailAddress(String email);
+
 }
