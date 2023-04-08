@@ -1,7 +1,6 @@
-package com.example.coffeeshop.controller;
+package com.example.coffeeshop.order;
 
-import com.example.coffeeshop.entity.Customer;
-import com.example.coffeeshop.service.OrderService;
+import com.example.coffeeshop.customer.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/v1/order")
 public class OrderController {
 
     // show current order
     // process current order
     // show current order confirmation, redirect
 
-    OrderService orderService;
+    private final OrderService orderService;
 
     @Autowired
     public OrderController(OrderService orderService) {
