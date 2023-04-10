@@ -14,22 +14,22 @@ import java.util.List;
 @RequestMapping("/api/v1/products/")
 public class ProductController {
 
-    private final ProductService productService;
+//    private final ProductService productService;
+//
+//    @Autowired
+//    public ProductController(ProductService productService) {
+//        this.productService = productService;
+//    }
 
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
-
-    // show available coffee products
-    @GetMapping
-    public String showProducts(Model model) {
-
-        List<Product> products = productService.findAll();
-
-        return "products";
-    }
+//    // show available coffee products
+//    @GetMapping
+//    public String showProducts(Model model) {
+//
+//        List<Product> products = productService.findAll();
+//
+//        return "products";
+//    }
 
 //    @PostMapping
 //    public Order addProducts(@RequestBody Order order){

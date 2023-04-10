@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query(value = "SELECT email FROM customer WHERE email = :email ", nativeQuery = true)
-    public Customer findByEmailAddress(@Param("email") String email);
+//    @Query(value = "SELECT email FROM customer WHERE email = :email ", nativeQuery = true)
+//    public Customer findByEmailAddress(@Param("email") String email);
 
 }
