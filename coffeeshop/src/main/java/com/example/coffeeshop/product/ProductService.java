@@ -8,14 +8,14 @@ import java.util.List;
 @Service
 public class ProductService  {
 
-    private final ProductRepository productRepository;
+//    private final ProductRepository productRepository;
+//
+//    @Autowired
+//    public ProductService(ProductRepository theProductRepository) {
+//        productRepository = theProductRepository;
+//    }
 
-    @Autowired
-    public ProductService(ProductRepository theProductRepository) {
-        productRepository = theProductRepository;
-    }
-
-    public List<Product> findAll() {
-        return productRepository.findAll();
-    }
+//    public List<Product> findAll() {
+//        return productRepository.findAll();
+//    }
 }
