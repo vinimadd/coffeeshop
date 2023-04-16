@@ -1,10 +1,10 @@
 
 # Coffee Shop App
 
-A small application that will alow to pick preferred coffee beans, place an order and 
-check previous orders. 
+Application will allow to create customer, add products to the basket and place an order. 
 
-Technologies used: Java, Spring boot, Hibernate, MySQL, JUnit.
+Backend: Java, Spring boot, JPA, MySQL, JUnit.
+Frontend: TypeScript, Angular.
 
 
 

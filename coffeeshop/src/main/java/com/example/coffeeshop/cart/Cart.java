@@ -24,4 +24,5 @@ public class Cart {
 
     @OneToOne(mappedBy = "cart")
     private Orders orders;
+
 }

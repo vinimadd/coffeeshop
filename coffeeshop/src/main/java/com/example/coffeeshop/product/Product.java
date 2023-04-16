@@ -33,7 +33,7 @@ public class Product {
     private BigInteger price;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
 }
