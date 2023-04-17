@@ -6,11 +6,12 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@SpringBootTest
 class CustomerControllerTest {
 
     @BeforeAll
@@ -51,6 +52,7 @@ class CustomerControllerTest {
                 .then()
                 .extract().response();
 
+        System.out.println(response.jsonPath());
         assertEquals(200, response.statusCode());
         assertEquals("vivianne@examplu.com", response.jsonPath().getString("[2].emailAddress"));
     }

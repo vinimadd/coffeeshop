@@ -90,27 +90,69 @@ class CustomerServiceTest {
 
     @Test
     void findCustomer() {
+        //given
+        Customer vivianne = new Customer(3L, "Vivianne", "LaBone",
+                "vivianne@examplu.com", "11-356-877",
+                "Caramelo 3411F, 121-45 Steaqks", new ArrayList<>());
+
+        underTest.saveCustomer(vivianne);
+
+        //when
+        //then
+        assertThat(vivianne).isInstanceOf(Customer.class);
+        assertThat(vivianne.getEmailAddress()).isEqualTo("vivianne@examplu.com");
     }
 
     @Test
     void updateCustomer() {
+        //given
+        Customer vivianne = new Customer(3L, "Vivianne", "LaBone",
+                "vivianne@examplu.com", "11-356-877",
+                "Caramelo 3411F, 121-45 Steaqks", new ArrayList<>());
+
+        underTest.saveCustomer(vivianne);
+
+        //when
+        given(customerRepository.findById(vivianne.getId())).willReturn(Optional.of(vivianne));
+
+        //then
+        underTest.updateCustomer(vivianne.getId(), "vivi@examplu.com","22-333-444","BF 12, 1-2 CA");
+        assertThat(vivianne).isInstanceOf(Customer.class);
+        assertThat(vivianne.getEmailAddress()).isEqualTo("vivi@examplu.com");
+        assertThat(vivianne.getPhoneNumber()).isEqualTo("22-333-444");
+        assertThat(vivianne.getAddress()).isEqualTo("BF 12, 1-2 CA");
     }
 
-//    @Test
-//    @Disabled
-//    void deleteCustomer() {
-//        //given
-//        Customer vivianne = new Customer(3L, "Vivianne", "LaBone",
-//                "vivianne@examplu.com", "11-356-877",
-//                "Caramelo 3411F, 121-45 Steaqks", new ArrayList<>());
-//
-//        underTest.saveCustomer(vivianne);
-//
-//        //when
-//        when(customerRepository.findById(vivianne.getId())).thenReturn(Optional.of(vivianne));
-//
-//        //then
-//        underTest.deleteCustomer(vivianne.getId());
-//        verify(customerRepository).deleteById(vivianne.getId());
-//    }
+    @Test
+    void deleteCustomer() {
+        //given
+        Customer vivianne = new Customer(3L, "Vivianne", "LaBone",
+                "vivianne@examplu.com", "11-356-877",
+                "Caramelo 3411F, 121-45 Steaqks", new ArrayList<>());
+
+        underTest.saveCustomer(vivianne);
+
+        //when
+        given(customerRepository.existsById(vivianne.getId())).willReturn(true);
+
+        //then
+        underTest.deleteCustomer(vivianne.getId());
+        verify(customerRepository).deleteById(vivianne.getId());
+    }
+
+    @Test
+    void willThrowWhenNoGivenUserId() {
+        //given
+        Long id = 3L;
+
+        given(customerRepository.existsById(id)).willReturn(false);
+
+        //when
+        //then
+        assertThatThrownBy(() -> underTest.deleteCustomer(id))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("There is no user with id " + id);
+
+        verify(customerRepository, never()).delete(any());
+    }
 }
