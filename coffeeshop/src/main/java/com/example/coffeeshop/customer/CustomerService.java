@@ -1,5 +1,7 @@
 package com.example.coffeeshop.customer;
 
+import com.example.coffeeshop.customer.error.CustomerNotFoundException;
+import com.example.coffeeshop.customer.error.EmailTakenError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ public class CustomerService  {
 
         if (customerByEmailAddress.isPresent()) {
             //TODO: create custom exception
-            throw new IllegalStateException("This email address is taken");
+            throw new EmailTakenError("This email address is taken");
         }
         customerRepository.save(newCustomer);
     }
@@ -37,7 +39,7 @@ public class CustomerService  {
 
         if (!exists) {
             //TODO: create custom exception
-            throw new IllegalStateException("There is no user with id " + customerId);
+            throw new CustomerNotFoundException("There is no user with id " + customerId);
         }
         return customerRepository.findById(customerId).get();
     }
@@ -45,7 +47,7 @@ public class CustomerService  {
     @Transactional //use setters to update
     public void updateCustomer(Long customerId, String emailAddress, String phoneNumber, String customerAddress) {
         Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new IllegalStateException("There is no user with id " + customerId));
+                .orElseThrow(() -> new CustomerNotFoundException("There is no user with id " + customerId));
 
         if (emailAddress != null && emailAddress.length() > 0
                 && !Objects.equals(customer.getEmailAddress(), emailAddress)) {
@@ -54,7 +56,7 @@ public class CustomerService  {
                     customerRepository.findByEmailAddress(emailAddress); //find by newly added email
 
             if (customerByEmailAddress.isPresent()) {
-                throw new IllegalStateException("This email address is taken");
+                throw new EmailTakenError("This email address is taken");
             }
             customer.setEmailAddress(emailAddress);
         }
@@ -75,7 +77,7 @@ public class CustomerService  {
 
         if(!exists) {
             //TODO: create custom exception
-            throw new IllegalStateException("There is no user with id " + customerId);
+            throw new CustomerNotFoundException("There is no user with id " + customerId);
         }
         customerRepository.deleteById(customerId);
     }
