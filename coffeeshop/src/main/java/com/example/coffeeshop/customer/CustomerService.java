@@ -28,7 +28,6 @@ public class CustomerService  {
         Optional<Customer> customerByEmailAddress = customerRepository.findByEmailAddress(newCustomer.getEmailAddress());
 
         if (customerByEmailAddress.isPresent()) {
-            //TODO: create custom exception
             throw new EmailTakenError("This email address is taken");
         }
         customerRepository.save(newCustomer);
@@ -38,7 +37,6 @@ public class CustomerService  {
         boolean exists = customerRepository.existsById(customerId);
 
         if (!exists) {
-            //TODO: create custom exception
             throw new CustomerNotFoundException("There is no user with id " + customerId);
         }
         return customerRepository.findById(customerId).get();
@@ -76,7 +74,6 @@ public class CustomerService  {
         boolean exists = customerRepository.existsById(customerId);
 
         if(!exists) {
-            //TODO: create custom exception
             throw new CustomerNotFoundException("There is no user with id " + customerId);
         }
         customerRepository.deleteById(customerId);
